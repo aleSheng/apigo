@@ -1,0 +1,21 @@
+2015/08/19 23:00:56 [router.go:854] [D] | GET        | /                                        | 2.258923ms       | match      | /                                        | 
+2015/08/19 23:02:24 [asm_amd64.s:2232] [C] ListenAndServe: %!(EXTRA *net.OpError=accept tcp [::]:8080: use of closed network connection, string=10476)
+2015/08/20 20:52:36 [router.go:854] [D] | GET        | /                                        | 2.327963ms       | match      | /                                        | 
+2015/08/20 20:52:41 [router.go:854] [D] | GET        | /v1                                      | 841.542µs        | notmatch   | 
+2015/08/20 20:52:59 [router.go:854] [D] | GET        | /users                                   | 795.991µs        | notmatch   | 
+2015/08/20 20:53:02 [router.go:854] [D] | GET        | /                                        | 1.021283ms       | match      | /                                        | 
+2015/08/20 21:45:24 [router.go:854] [D] | GET        | /                                        | 923.939µs        | match      | /                                        | 
+2015/08/20 21:45:41 [router.go:854] [D] | GET        | /v1/users/login                          | 818.235µs        | notmatch   | 
+2015/08/20 21:46:17 [router.go:854] [D] | GET        | /test/login.html                         | 843.529µs        | notmatch   | 
+2015/08/20 21:46:23 [router.go:854] [D] | GET        | /login.html                              | 855.518µs        | notmatch   | 
+2015/08/20 21:46:50 [staticfile.go:61] [W] Can't find the file: static/testlogin.html stat static/testlogin.html: no such file or directory 
+2015/08/20 22:25:33 [asm_amd64.s:2232] [C] ListenAndServe: %!(EXTRA *net.OpError=accept tcp [::]:8080: use of closed network connection, string=476)
+2015/08/30 23:21:32 [router.go:854] [D] | GET        | /                                        | 1.39716ms        | match      | /                                        | 
+2015/08/30 23:21:56 [router.go:854] [D] | GET        | /v1/users/register                       | 557.495µs        | notmatch   | 
+2015/08/30 23:22:13 [router.go:854] [D] | GET        | /v1/users/downloads                      | 320.287µs        | match      | /v1/users/downloads                      | 
+2015/08/30 23:24:40 [staticfile.go:61] [W] Can't find the file: static/login.html stat static/login.html: no such file or directory 
+2015/08/30 23:25:27 [router.go:854] [D] | GET        | /login.html                              | 607.486µs        | notmatch   | 
+2015/08/30 23:38:16 [router.go:854] [D] | GET        | /test/login.html                         | 1.006774ms       | notmatch   | 
+2015/08/30 23:39:16 [router.go:854] [D] | GET        | /test/login.html                         | 580.284µs        | notmatch   | 
+2015/08/30 23:42:48 [router.go:854] [D] | GET        | /                                        | 1.341185ms       | match      | /                                        | 
+2015/08/30 23:48:03 [asm_amd64.s:1696] [C] ListenAndServe: %!(EXTRA *net.OpError=accept tcp [::]:8080: use of closed network connection, string=2826)
