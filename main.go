@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "beego-demo/routers"
+	_ "github.com/anlint/apigo/routers"
 	"fmt"
 	"github.com/astaxie/beego"
 	_ "github.com/astaxie/beego/session/redis"

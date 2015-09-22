@@ -1,7 +1,7 @@
 package models
 
 import (
-	"beego-demo/models/mymongo"
+	"github.com/anlint/apigo/models/mymongo"
 	"crypto/rand"
 	"fmt"
 	"golang.org/x/crypto/scrypt"
@@ -107,6 +107,7 @@ func (u *User) Getall() (code int, err error) {
 	c := mConn.DB("anlintdb").C("users")
 	iter := c.Find(nil).Iter()
 	var personAll Men
+	var result User
 	for iter.Next(&result) {
 		fmt.Printf("Result: %v\n", result.Name)
 		personAll.Users = append(personAll.Users, result)

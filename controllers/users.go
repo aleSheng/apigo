@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"beego-demo/models"
+	"github.com/anlint/apigo/models"
 	"crypto/md5"
 	"fmt"
 	"github.com/astaxie/beego"

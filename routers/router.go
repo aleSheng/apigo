@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"beego-demo/controllers"
+	"github.com/anlint/apigo/controllers"
 	"github.com/astaxie/beego"
 )
 

@@ -1,7 +1,7 @@
 package models
 
 import (
-	"beego-demo/models/myredis"
+	"github.com/anlint/apigo/models/myredis"
 	"fmt"
 	"github.com/astaxie/beego"
 	"time"
