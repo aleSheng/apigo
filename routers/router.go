@@ -24,6 +24,14 @@ func init() {
 				&controllers.ServController{},
 				"get:Getall"),
 		),
+		beego.NSNamespace("/lint",
+			beego.NSRouter("/getone",
+				&controllers.LintController{},
+				"get:Getone"),
+			beego.NSRouter("/getall",
+				&controllers.LintController{},
+				"get:Getall"),
+		),
 	)
 	beego.AddNamespace(ns)
 }

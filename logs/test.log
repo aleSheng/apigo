@@ -33,3 +33,15 @@
 2015/09/26 14:15:08 [asm_amd64.s:1696] [C] ListenAndServe: %!(EXTRA *net.OpError=accept tcp [::]:8080: use of closed network connection, string=7251)
 2015/09/26 14:15:16 [router.go:854] [D] | GET        | /v1/serv/getall                          | 1.377185ms       | match      | /v1/serv/getall                          | 
 2015/09/26 14:16:45 [asm_amd64.s:1696] [C] ListenAndServe: %!(EXTRA *net.OpError=accept tcp [::]:8080: use of closed network connection, string=7269)
+2015/09/26 16:46:04 [router.go:854] [D] | GET        | /v1/serv/getall                          | 1.66166ms        | match      | /v1/serv/getall                          | 
+2015/09/26 16:46:13 [router.go:854] [D] | GET        | /v1/serv/getall                          | 925.323µs        | match      | /v1/serv/getall                          | 
+2015/09/26 16:46:40 [router.go:854] [D] | GET        | /v1/serv/getall                          | 967.935µs        | match      | /v1/serv/getall                          | 
+2015/09/26 16:46:48 [router.go:854] [D] | GET        | /v1/serv/getall                          | 863.549µs        | match      | /v1/serv/getall                          | 
+2015/09/26 16:46:59 [router.go:854] [D] | GET        | /v1/serv/getall                          | 871.638µs        | match      | /v1/serv/getall                          | 
+2015/09/26 16:47:28 [router.go:854] [D] | GET        | /v1/serv/getall                          | 899.341µs        | match      | /v1/serv/getall                          | 
+2015/09/26 16:47:30 [router.go:854] [D] | GET        | /v1/serv/getall                          | 836.247µs        | match      | /v1/serv/getall                          | 
+2015/09/26 16:47:31 [asm_amd64.s:1696] [C] ListenAndServe: %!(EXTRA *net.OpError=accept tcp [::]:8080: use of closed network connection, string=7358)
+2015/09/26 16:47:49 [router.go:854] [D] | GET        | /v1/serv/getall                          | 1.286792ms       | match      | /v1/serv/getall                          | 
+2015/09/26 17:03:10 [router.go:854] [D] | GET        | /v1/lint/getall                          | 1.667968ms       | match      | /v1/lint/getall                          | 
+2015/09/26 17:04:49 [router.go:854] [D] | GET        | /v1/lint/getall                          | 2.274138ms       | match      | /v1/lint/getall                          | 
+2015/09/26 17:29:55 [asm_amd64.s:1696] [C] ListenAndServe: %!(EXTRA *net.OpError=accept tcp [::]:8080: use of closed network connection, string=7496)

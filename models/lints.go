@@ -7,35 +7,37 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-type Serv struct {
+type Lint struct {
 	ID       bson.ObjectId    `bson:"_id"      json:"id,omitempty"`
 	Title     string    `bson:"title"     json:"title,omitempty"`
 	Create_at time.Time `bson:"create_at" json:"create_at"`
 	Pic       string    `bson:"pic" json:"pic,omitempty"`
+	Cateid    int     `bson:"cateid" json:"cateid"`
+	Styleid   int     `bson:"styleid" json:"styleid"`
 }
-type Servlist struct {
-	Servs []Serv
+type Lintlist struct {
+	Lints []Lint
 }
 
-func Findservbyid() (u Serv) {
+func Findlintbyid() (u Lint) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb").C("servads")
+	c := mConn.DB("anlintdb").C("lints")
 	c.Find(nil).One(u)
 	return
 }
 
-func  Getallserv() (personAll Servlist) {
+func  Getalllint() (personAll Lintlist) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb").C("servads")
+	c := mConn.DB("anlintdb").C("lints")
 	iter := c.Find(nil).Iter()
-	var result Serv
+	var result Lint
 	for iter.Next(&result) {
 		fmt.Printf("Result: %v\n", result.ID)
-		personAll.Servs = append(personAll.Servs, result)
+		personAll.Lints = append(personAll.Lints, result)
 	}
 	return
 }

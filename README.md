@@ -6,19 +6,19 @@ A web demo using Beego framework, with MongoDB,Redis support.
 
 ## API列表
 
-### 第一部分
+API都在routers/router.go里面。
+V层：该server纯作为API server（json），不用html template render。
+C层：在controllers目录里面是数据处理和业务逻辑。
+M层：在models目录下有数据描述。
+
+
+### 数据库
 
 该部分使用的数据库是 MongoDB 和 Redis。
-
-在 static/test 目录下有如下的测试表单，除了用于测试外，也可看出具体的数据通讯协议：
-* register.html
-* login.html
-* logout.html
-* passwd.html
-* uploads.html
+mongodb：数据持久化
+redis：session，以及数据分析
 
 说明：
-* 输入数据通过 form 表单提交，返回数据均为 json。
 * 使用 Beego 的 ParseForm 功能将输入数据解析到 struct 中。
 * 使用 Beego 的 Validation 功能对数据进行校验。
 * 使用 [scrypt](https://godoc.org/golang.org/x/crypto/scrypt) 算法进行密码处理。
@@ -28,7 +28,6 @@ A web demo using Beego framework, with MongoDB,Redis support.
 说明：
 * 参考 RESTful 模式设计 API。
 * 输入数据采用 json，返回数据也是 json。
-* 数据库操作使用原生 SQL，没有采用 ORM。
 
 
 ## 环境
@@ -43,7 +42,7 @@ A web demo using Beego framework, with MongoDB,Redis support.
 
 ```
 [mongodb]
-url = mongodb://127.0.0.1:27017/beego-demo
+url = mongodb://127.0.0.1:27017/anlintdb
 ```
 
 完整的 url 写法可参考：http://godoc.org/gopkg.in/mgo.v2#Dial
@@ -77,40 +76,13 @@ $ go get -u github.com/garyburd/redigo/redis
 $ go get -u golang.org/x/crypto/scrypt
 ```
 
-当前版本：
-
-```
-$ bee version
-bee   :1.3.0
-beego :1.5.0
-Go    :go version go1.4.2 linux/amd64
-```
 
 ## 运行
 
-将代码放在 $GOPATH/src 目录下，运行（调试模式）：
+将代码放在 $GOPATH/src 目录下，运行（调试模式）
 
-```
-$ cd $GOPATH/src/beego-demo/
-$ bee run
-```
+｀｀｀
+bee run
+｀｀｀
 
-正式部署时，可通过系统的 Init 服务来启动。在 scripts 目录下有 upstart 和 systemd 两套简易示例脚本，可参考使用。
-
-例如，在 CentOS 6 下，复制 upstart/bdemo.conf 到 /etc/init/，相应修改后，执行：
-
-```
-# start bdemo
-```
-
-在 CentOS 7 下，复制 systemd/bdemo.service 到 /etc/systemd/system/，相应修改后，执行：
-
-```
-# systemctl daemon-reload
-# systemctl enable bdemo.service
-# systemctl start bdemo.service
-```
-
-由于 Init 是由 root 控制的，相应的服务缺省也具有 root 权限，故一般都应该做降权处理。可在 systemd 和 upstart 脚本中设置运行时的普通用户名和组名，具体可参考官方文档。
-
-降权的问题在于普通用户无法绑定特权端口（如 80 ），不过实际环境下，还是建议在前面部署 Nginx 等成熟的 web 服务器，通过反向代理来访问应用。
+正式部署时，可用supervisor守护
