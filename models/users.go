@@ -3,10 +3,11 @@ package models
 import (
 	"github.com/anlint/apigo/models/mymongo"
 	"fmt"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type User struct {
-	ID       string    `bson:"_id"      json:"_id,omitempty"`
+	ID       bson.ObjectId    `bson:"_id"      json:"_id,omitempty"`
 	Name     string    `bson:"name"     json:"name,omitempty"`
 }
 const PW_HASH_BYTES = 64
@@ -18,7 +19,7 @@ func FinduserById() (u User) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("").C("users")
+	c := mConn.DB("anlintdb").C("users")
 	c.Find(nil).One(u)
 	return
 }
@@ -31,7 +32,7 @@ func  Getallusers() (personAll Men) {
 	iter := c.Find(nil).Iter()
 	var result User
 	for iter.Next(&result) {
-		fmt.Printf("Result: %v\n", result.Name)
+		fmt.Printf("Result: %v\n", result.ID)
 		personAll.Users = append(personAll.Users, result)
 	}
 	return

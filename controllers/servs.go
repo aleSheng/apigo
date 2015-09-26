@@ -8,14 +8,14 @@ type ServController struct {
 	BaseController
 }
 func (this *ServController) Getone() {
-	obs := models.FinduserById()
+	obs := models.Findservbyid()
 	this.Data["json"] = obs
 	this.ServeJson()
 }
 
 
 func (this *ServController) Getall() {
-	obs := models.Getallusers()
+	obs := models.Getallserv()
 	this.Data["json"] = obs
 	this.ServeJson()
 }
