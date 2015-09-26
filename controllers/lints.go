@@ -8,8 +8,13 @@ type LintController struct {
 	BaseController
 }
 func (this *LintController) Getone() {
-	obs := models.Findlintbyid()
-	this.Data["json"] = obs
+	id:=this.GetString(":id")
+	obs,err := models.Findlintbyid(id)
+	if(err!=nil){
+		this.Data["json"] = err
+	}else{
+		this.Data["json"] = obs
+	}
 	this.ServeJson()
 }
 

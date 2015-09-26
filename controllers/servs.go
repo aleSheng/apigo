@@ -8,8 +8,13 @@ type ServController struct {
 	BaseController
 }
 func (this *ServController) Getone() {
-	obs := models.Findservbyid()
-	this.Data["json"] = obs
+	id:=this.GetString(":id")
+	obs , err := models.Findservbyid(id)
+	if(err!=nil){
+		this.Data["json"] = err
+	}else{
+		this.Data["json"] = obs
+	}
 	this.ServeJson()
 }
 

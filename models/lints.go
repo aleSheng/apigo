@@ -19,12 +19,12 @@ type Lintlist struct {
 	Lints []Lint
 }
 
-func Findlintbyid() (u Lint) {
+func Findlintbyid(id string) (u Lint, err error) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
 	c := mConn.DB("anlintdb").C("lints")
-	c.Find(nil).One(u)
+	err = c.FindId(bson.ObjectIdHex(id)).One(&u)
 	return
 }
 

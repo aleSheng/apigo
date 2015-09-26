@@ -17,12 +17,11 @@ type Servlist struct {
 	Servs []Serv
 }
 
-func Findservbyid() (u Serv) {
+func Findservbyid(id string) (u Serv, err error) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
-
 	c := mConn.DB("anlintdb").C("servads")
-	c.Find(nil).One(u)
+	err = c.Find(bson.M{"_id":bson.ObjectIdHex(id)}).One(&u)
 	return
 }
 
