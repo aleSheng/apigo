@@ -73,3 +73,6 @@
 2015/09/26 20:55:23 [router.go:854] [D] | GET        | /v1/lint/getall                          | 2.055457ms       | match      | /v1/lint/getall                          | 
 2015/09/26 20:55:30 [router.go:854] [D] | GET        | /v1/lint/getone/558e4f48673fdf85031cdadd | 533.444µs        | match      | /v1/lint/getone/:id                      | 
 2015/09/26 20:56:07 [router.go:854] [D] | GET        | /v1/lint/getone/56013a87f26c664f0fd8d73b | 539.183µs        | match      | /v1/lint/getone/:id                      | 
+2015/09/28 22:42:17 [lints.go:33] [D] 2015-09-28 22:42:17.527128464 +0800 CST 
+2015/09/28 22:42:17 [lints.go:34] [D] 1 
+2015/09/28 22:42:17 [router.go:854] [D] | GET        | /v1/lint/getall                          | 37.727503ms      | match      | /v1/lint/getall                          | 

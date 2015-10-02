@@ -18,6 +18,7 @@ type Lint struct {
 type Lintlist struct {
 	Lints []Lint
 }
+//TODO  1. mongodb connection;
 
 func Findlintbyid(id string) (u Lint, err error) {
 	mConn := mymongo.Conn()
@@ -34,6 +35,19 @@ func  Getalllint() (personAll Lintlist) {
 
 	c := mConn.DB("anlintdb").C("lints")
 	iter := c.Find(nil).Iter()
+	var result Lint
+	for iter.Next(&result) {
+		fmt.Printf("Result: %v\n", result.ID)
+		personAll.Lints = append(personAll.Lints, result)
+	}
+	return
+}
+func  Getlints(lastdate time.Time, cateid int) (personAll Lintlist) {
+	mConn := mymongo.Conn()
+	defer mConn.Close()
+
+	c := mConn.DB("anlintdb").C("lints")
+	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Skip(0).Limit(12).Iter()
 	var result Lint
 	for iter.Next(&result) {
 		fmt.Printf("Result: %v\n", result.ID)
