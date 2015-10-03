@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/anlint/apigo/models/mymongo"
-	"fmt"
 	"time"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -25,15 +24,14 @@ func Findservbyid(id string) (u Serv, err error) {
 	return
 }
 
-func  Getallserv() (personAll Servlist) {
+func  Getallserv(lastdate time.Time) (personAll Servlist) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
 	c := mConn.DB("anlintdb").C("servads")
-	iter := c.Find(nil).Iter()
+	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Skip(0).Limit(24).Iter()
 	var result Serv
 	for iter.Next(&result) {
-		fmt.Printf("Result: %v\n", result.ID)
 		personAll.Servs = append(personAll.Servs, result)
 	}
 	return

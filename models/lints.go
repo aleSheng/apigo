@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/anlint/apigo/models/mymongo"
-	"fmt"
 	"time"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -18,7 +17,6 @@ type Lint struct {
 type Lintlist struct {
 	Lints []Lint
 }
-//TODO  1. mongodb connection;
 
 func Findlintbyid(id string) (u Lint, err error) {
 	mConn := mymongo.Conn()
@@ -29,19 +27,6 @@ func Findlintbyid(id string) (u Lint, err error) {
 	return
 }
 
-func  Getalllint() (personAll Lintlist) {
-	mConn := mymongo.Conn()
-	defer mConn.Close()
-
-	c := mConn.DB("anlintdb").C("lints")
-	iter := c.Find(nil).Iter()
-	var result Lint
-	for iter.Next(&result) {
-		fmt.Printf("Result: %v\n", result.ID)
-		personAll.Lints = append(personAll.Lints, result)
-	}
-	return
-}
 func  Getlints(lastdate time.Time, cateid int) (personAll Lintlist) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
@@ -50,7 +35,6 @@ func  Getlints(lastdate time.Time, cateid int) (personAll Lintlist) {
 	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Skip(0).Limit(12).Iter()
 	var result Lint
 	for iter.Next(&result) {
-		fmt.Printf("Result: %v\n", result.ID)
 		personAll.Lints = append(personAll.Lints, result)
 	}
 	return

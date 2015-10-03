@@ -7,9 +7,22 @@ A web demo using Beego framework, with MongoDB,Redis support.
 ## API列表
 
 API都在routers/router.go里面。
-V层：该server纯作为API server（json），不用html template render。
-C层：在controllers目录里面是数据处理和业务逻辑。
-M层：在models目录下有数据描述。
+
+* /api/v1/为前缀
+* servads操作：/api/v1/serv/getone, /api/v1/serv/getall
+```
+/api/v1/serv/getall?lastdate=2015-08-28T15:43:03.639Z
+获取2015-08-28T15:43:03.639Z这个日期之前的数据
+```
+* lints操作：/api/v1/lint/getone, /api/v1/lint/getall
+```
+/api/v1/serv/getall?lastdate=2015-08-28T15:43:03.639Z&cateid=1
+获取2015-08-28T15:43:03.639Z这个日期之前的数据,且cateid为1的
+```
+
+* V层：该server纯作为API server（json），不用html template render。
+* C层：在controllers目录里面是数据处理和业务逻辑。
+* M层：在models目录下有数据描述。
 
 
 ### 数据库

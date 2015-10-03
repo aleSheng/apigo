@@ -2,3 +2,4 @@
 .idea/
 apigo
 conf/app.conf
+log/

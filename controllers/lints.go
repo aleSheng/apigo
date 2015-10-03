@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"github.com/anlint/apigo/models"
-	"github.com/astaxie/beego"
 	"time"
 )
 
@@ -22,7 +21,7 @@ func (this *LintController) Getone() {
 
 
 func (this *LintController) Getall() {
-	lastdate, error:= time.Parse("20060102 15:04:05",this.GetString("lastdate"))
+	lastdate, error:= time.Parse("2006-01-02T15:04:05Z",this.GetString("lastdate"))
 	if error != nil {
 		lastdate = time.Now()
 	}
@@ -30,8 +29,6 @@ func (this *LintController) Getall() {
 	if error != nil {
 		cateid=0
 	}
-	beego.Debug(lastdate)
-	beego.Debug(cateid)
 	obs := models.Getlints(lastdate,cateid)
 	this.Data["json"] = obs
 	this.ServeJson()

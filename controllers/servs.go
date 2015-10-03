@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/anlint/apigo/models"
+	"time"
 )
 
 type ServController struct {
@@ -18,9 +19,12 @@ func (this *ServController) Getone() {
 	this.ServeJson()
 }
 
-
 func (this *ServController) Getall() {
-	obs := models.Getallserv()
+	lastdate, error:= time.Parse("2006-01-02T15:04:05Z",this.GetString("lastdate"))
+	if error != nil {
+		lastdate = time.Now()
+	}
+	obs := models.Getallserv(lastdate)
 	this.Data["json"] = obs
 	this.ServeJson()
 }
