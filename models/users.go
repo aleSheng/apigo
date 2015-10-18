@@ -21,7 +21,7 @@ func FinduserById() (u User) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb").C("users")
+	c := mConn.DB("anlintdb1").C("users")
 	c.Find(nil).One(u)
 	return
 }
@@ -30,7 +30,7 @@ func  Getallusers() (personAll Men) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb").C("users")
+	c := mConn.DB("anlintdb1").C("users")
 	iter := c.Find(nil).Iter()
 	var result User
 	for iter.Next(&result) {

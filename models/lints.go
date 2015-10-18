@@ -22,7 +22,7 @@ func Findlintbyid(id string) (u Lint, err error) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb").C("lints")
+	c := mConn.DB("anlintdb1").C("lints")
 	err = c.FindId(bson.ObjectIdHex(id)).One(&u)
 	return
 }
@@ -31,7 +31,7 @@ func  Getlints(lastdate time.Time, cateid int) (personAll Lintlist) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb").C("lints")
+	c := mConn.DB("anlintdb1").C("lints")
 	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Skip(0).Limit(12).Iter()
 	var result Lint
 	for iter.Next(&result) {

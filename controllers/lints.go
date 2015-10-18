@@ -21,8 +21,6 @@ func (this *LintController) Getone() {
 
 
 func (this *LintController) Getall() {
-	sid := this.GetSession("anlint.sid")
-	println(sid)
 	lastdate, er:= time.Parse("2006-01-02T15:04:05Z",this.GetString("lastdate"))
 	if er != nil {
 		lastdate = time.Now()

@@ -19,7 +19,7 @@ type Servlist struct {
 func Findservbyid(id string) (u Serv, err error) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
-	c := mConn.DB("anlintdb").C("servads")
+	c := mConn.DB("anlintdb1").C("servads")
 	err = c.Find(bson.M{"_id":bson.ObjectIdHex(id)}).One(&u)
 	return
 }
@@ -28,7 +28,7 @@ func  Getallserv(lastdate time.Time) (personAll Servlist) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb").C("servads")
+	c := mConn.DB("anlintdb1").C("servads")
 	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Skip(0).Limit(24).Iter()
 	var result Serv
 	for iter.Next(&result) {
