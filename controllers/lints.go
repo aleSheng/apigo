@@ -21,12 +21,14 @@ func (this *LintController) Getone() {
 
 
 func (this *LintController) Getall() {
-	lastdate, error:= time.Parse("2006-01-02T15:04:05Z",this.GetString("lastdate"))
-	if error != nil {
+	sid := this.GetSession("anlint.sid")
+	println(sid)
+	lastdate, er:= time.Parse("2006-01-02T15:04:05Z",this.GetString("lastdate"))
+	if er != nil {
 		lastdate = time.Now()
 	}
-	cateid, error := this.GetInt("cateid")
-	if error != nil {
+	cateid, err := this.GetInt("cateid")
+	if err != nil {
 		cateid=0
 	}
 	obs := models.Getlints(lastdate,cateid)
