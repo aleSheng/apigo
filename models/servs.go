@@ -11,6 +11,7 @@ type Serv struct {
 	Title     string    `bson:"title"     json:"title,omitempty"`
 	Create_at time.Time `bson:"create_at" json:"create_at"`
 	Pic       string    `bson:"pic" json:"pic,omitempty"`
+	Link       string    `bson:"link" json:"link,omitempty"`
 }
 type Servlist struct {
 	Servs []Serv
