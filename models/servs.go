@@ -30,7 +30,7 @@ func  Getallserv(lastdate time.Time) (personAll Servlist) {
 	defer mConn.Close()
 
 	c := mConn.DB("anlintdb1").C("servads")
-	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Skip(0).Limit(24).Iter()
+	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Sort("-create_at").Skip(0).Limit(24).Iter()
 	var result Serv
 	for iter.Next(&result) {
 		personAll.Servs = append(personAll.Servs, result)
