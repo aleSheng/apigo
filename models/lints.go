@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/anlint/apigo/models/mymongo"
 	"time"
 	"gopkg.in/mgo.v2/bson"
@@ -31,7 +32,8 @@ func  Getlints(lastdate time.Time, cateid int) (personAll Lintlist) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb1").C("lints")
+	dbname :=beego.AppConfig.String("mongodb::dbname")
+	c := mConn.DB(dbname).C("lints")
 	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Sort("-create_at").Skip(0).Limit(24).Iter()
 	var result Lint
 	for iter.Next(&result) {

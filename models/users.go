@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/anlint/apigo/models/mymongo"
 	"fmt"
 	"time"
@@ -30,7 +31,8 @@ func  Getallusers() (personAll Men) {
 	mConn := mymongo.Conn()
 	defer mConn.Close()
 
-	c := mConn.DB("anlintdb1").C("users")
+	dbname :=beego.AppConfig.String("mongodb::dbname")
+	c := mConn.DB(dbname).C("users")
 	iter := c.Find(nil).Iter()
 	var result User
 	for iter.Next(&result) {
