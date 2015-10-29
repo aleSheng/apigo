@@ -9,11 +9,13 @@ import (
 
 type Lint struct {
 	ID       bson.ObjectId    `bson:"_id"      json:"id,omitempty"`
-	Title     string    `bson:"title"     json:"title,omitempty"`
+	Text     string    `bson:"text"     json:"text,omitempty"`
 	Create_at time.Time `bson:"create_at" json:"create_at"`
 	Pic       string    `bson:"pic" json:"pic,omitempty"`
 	Cateid    int     `bson:"cateid" json:"cateid"`
 	Styleid   int     `bson:"styleid" json:"styleid"`
+	Pubname   string  `bson:"pubname" json:"pubname"`
+	Headimg   string  `bson:"headimg" json:"headimg"`
 }
 type Lintlist struct {
 	Lints []Lint

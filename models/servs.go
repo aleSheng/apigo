@@ -32,7 +32,7 @@ func  Getallserv(lastdate time.Time) (personAll Servlist) {
 
 	dbname :=beego.AppConfig.String("mongodb::dbname")
 	c := mConn.DB(dbname).C("servads")
-	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate}}).Sort("-create_at").Skip(0).Limit(24).Iter()
+	iter := c.Find(bson.M{"create_at":bson.M{"$lt":lastdate},"status":0}).Sort("-create_at").Skip(0).Limit(24).Iter()
 	var result Serv
 	for iter.Next(&result) {
 		personAll.Servs = append(personAll.Servs, result)
