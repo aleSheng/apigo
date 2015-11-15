@@ -18,7 +18,20 @@ func (this *LintController) Getone() {
 	}
 	this.ServeJson()
 }
-
+func (this *LintController) Devote() {
+//	id:=this.GetString(":id")
+//	obs,err := models.Findlintbyid(id)
+//	if(err!=nil){
+//		this.Data["json"] = err
+//	}else{
+//		this.Data["json"] = "{'err':'0','msg':'" + obs.ID+"'}"
+//	}
+	this.Data["json"] = map[string]string{
+		"error": "0",
+		"msg":  "举报已提交",
+	}
+	this.ServeJson()
+}
 
 func (this *LintController) Getall() {
 	lastdate, er:= time.Parse("2006-01-02T15:04:05Z",this.GetString("lastdate"))

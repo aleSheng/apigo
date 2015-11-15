@@ -8,14 +8,6 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 	ns := beego.NewNamespace("/api/v1",
-//		beego.NSNamespace("/users",
-//			beego.NSRouter("/getone",
-//				&controllers.UserController{},
-//				"get:Getone"),
-//			beego.NSRouter("/getall",
-//				&controllers.UserController{},
-//				"get:Getall"),
-//		),
 		beego.NSNamespace("/serv",
 			beego.NSRouter("/getone/:id",
 				&controllers.ServController{},
@@ -31,6 +23,9 @@ func init() {
 			beego.NSRouter("/getall",
 				&controllers.LintController{},
 				"get:Getall"),
+			beego.NSRouter("/getone/:id/devote",
+				&controllers.LintController{},
+				"get:Devote"),
 		),
 	)
 	beego.AddNamespace(ns)
